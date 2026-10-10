@@ -1,0 +1,219 @@
+/* Bob's Noodle Factory — one stylesheet for every page.
+   Colours are tokens: warm paper, dark broth ink, chili for the accent. */
+
+:root {
+  --paper: #f7f2e8;
+  --card: #efe7d8;
+  --ink: #261d15;
+  --muted: #5f5143;
+  --chili: #b2412a;
+  --broth: #d39428;
+  --line: #e0d4bf;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17120d;
+    --card: #221b14;
+    --ink: #f2e9db;
+    --muted: #b8a892;
+    --chili: #ef8a66;
+    --broth: #e6b257;
+    --line: #3a3026;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1.0625rem/1.6 var(--sans);
+}
+
+a { color: var(--chili); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--chili); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---- Top bar ---- */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  font: 600 1.125rem/1.2 var(--serif);
+}
+
+.brand svg { width: 2.25rem; height: 2.25rem; flex: none; }
+
+.top nav { display: flex; gap: 1.25rem; font-size: 0.95rem; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--chili); }
+
+/* ---- Noodle rule between sections ---- */
+
+.noodle {
+  height: 12px;
+  margin: 3.5rem 0;
+  background: var(--chili);
+  opacity: 0.55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12' viewBox='0 0 48 12'%3E%3Cpath d='M0 6c6 0 6-4 12-4s6 8 12 8 6-8 12-8 6 4 12 4' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center / 48px 12px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12' viewBox='0 0 48 12'%3E%3Cpath d='M0 6c6 0 6-4 12-4s6 8 12 8 6-8 12-8 6 4 12 4' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left center / 48px 12px;
+}
+
+/* ---- Type ---- */
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.15; margin: 0; }
+
+h1 {
+  font-size: clamp(2.2rem, 7vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 0.8rem;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+h3 { font-size: 1.35rem; font-weight: 600; }
+
+p { margin: 0 0 1rem; }
+
+.eyebrow {
+  font-size: 0.9rem;
+  color: var(--chili);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 36rem;
+  margin-top: 1.5rem;
+  text-wrap: pretty;
+}
+
+.hero { padding-top: 2.5rem; }
+
+/* ---- Work card ---- */
+
+.card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.card img {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  flex: none;
+}
+
+.card h3 { margin-bottom: 0.5rem; }
+.card p:last-child { margin-bottom: 0; }
+
+.meta { font-size: 0.92rem; color: var(--muted); }
+
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-weight: 600; }
+
+/* ---- How the factory runs ---- */
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 1.5rem;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  column-gap: 0.75rem;
+}
+
+.steps li::before {
+  content: counter(step);
+  grid-row: span 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--chili);
+  color: var(--paper);
+  font: 600 1rem/1 var(--serif);
+}
+
+.steps h3 { font-size: 1.15rem; margin: 0.3rem 0 0.35rem; }
+.steps p { margin: 0; color: var(--muted); }
+
+/* ---- Contact ---- */
+
+.email {
+  font: 600 clamp(1.25rem, 4.5vw, 1.6rem)/1.3 var(--serif);
+  overflow-wrap: anywhere;
+}
+
+/* ---- Footer ---- */
+
+.foot {
+  margin-top: 4.5rem;
+  padding: 1.5rem 0 3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.foot p { margin: 0 0 0.35rem; }
+
+/* ---- 404 ---- */
+
+.lost { padding-top: 4rem; text-align: center; }
+.lost svg { width: 5rem; height: 5rem; margin-bottom: 1.5rem; }
+.lost .lede { margin-left: auto; margin-right: auto; }
+
+@media (max-width: 30rem) {
+  .card { flex-direction: column; }
+  .card img { width: 72px; height: 72px; border-radius: 16px; }
+  .top nav { gap: 1rem; }
+}
