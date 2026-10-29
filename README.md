@@ -19,6 +19,7 @@ Open `index.html` in a browser. It follows the computer's light or dark setting.
 | `favicon.svg` | The bowl icon in the browser tab. |
 | `img/vantage-point.png` | Vantage Point's app icon, from getvantagepoint.app. |
 | `CNAME` | Tells GitHub Pages which domain to answer to. |
+| `saturday/index.html` | A passcode-locked scheduling tool (not linked from the site). See below. |
 
 ## This repo is public
 
@@ -40,3 +41,11 @@ Porkbun DNS records for the site (the MX and TXT records are the email forwardin
 | A | (blank) | 185.199.110.153 |
 | A | (blank) | 185.199.111.153 |
 | CNAME | www | bigskybob.github.io |
+
+## /saturday
+
+`bobsnoodlefactory.com/saturday` hosts a private scheduling tool, locked behind a passcode. It is the
+one page on this site with scripts, and it isn't linked from anywhere else. The page is encrypted:
+without the passcode the file is unreadable. Nothing anyone types into it is sent anywhere; boards stay
+in that viewer's browser or in files they save themselves. The source and the build that encrypts it
+live outside this repo, so updates arrive here as a new `saturday/index.html`.
