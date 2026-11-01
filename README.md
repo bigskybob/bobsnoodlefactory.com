@@ -46,6 +46,7 @@ Porkbun DNS records for the site (the MX and TXT records are the email forwardin
 
 `bobsnoodlefactory.com/saturday` hosts a private scheduling tool, locked behind a passcode. It is the
 one page on this site with scripts, and it isn't linked from anywhere else. The page is encrypted:
-without the passcode the file is unreadable. Nothing anyone types into it is sent anywhere; boards stay
-in that viewer's browser or in files they save themselves. The source and the build that encrypts it
+without the passcode the file is unreadable. Unshared boards stay in that viewer's browser or in files they save. A "shared day" is encrypted in the
+browser with a day key before it goes to a separate sync server (satboard-sync on Cloudflare), which
+stores only ciphertext and deletes it 3 days after the scheduled date. The source and the build that encrypts it
 live outside this repo, so updates arrive here as a new `saturday/index.html`.
